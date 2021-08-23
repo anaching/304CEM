@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+    <title>Training Studio</title>
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+
+    <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.css">
+
+    <link rel="stylesheet" href="assets/css/templatemo-training-studio.css">
+
+    <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+   
+
+
+<script>
+  $(document).ready(function(){   
+  var jsonData={"about":"hi"};
+   $.ajax({
+      url: "http://127.0.0.1:2323/passdata", 
+                  dataType: 'JSON',
+                  type: 'POST',
+                  data: JSON.stringify(jsonData),
+                  success: function(result){
+                  var result = result.about;
+                  var aboutid = "about";
+                  document.getElementById(about).innerHTML=result;
+                  }, error: function (xhr, textStatus, errorThrown) {
+                }
+      })
+  });
+      
+</script>
+
+
+<script>
+$(document).ready(function(){   
+ var favlist = [];
+ var favitem = 0;
+ 
+ var favlist2 = [];
+ var favitem2 = 0;
+ 
+ 
+ var favlist3 = [];
+ var favitem3 = 0;
+
+ var favlist4 = [];
+ var favitem4 = 0;
+
+ 
+ $("#add").click(function(){
+ favlist[favitem] = $("#favorite_list").val();
+ favitem +=1;
+ localStorage.setItem("favlist", JSON.stringify(favlist));
+ })
+ 
+ 
+// handle button clicks         
+$('#buttonID').click(function() {
+  // make an ajax call
+  alert($('#formID').serialize());
+  $.ajax({
+          dataType: 'jsonp',
+          jsonpCallback: '_wrapper',
+          data: $('#formID').serialize(),
+          type: 'POST',
+          url: "http://127.0.0.1:2323/VIP",
+          success: handleButtonResponse,
+      });
+  });
+  function handleButtonResponse(data){
+    alert(data);
+    // parse the json string
+    var jsonObject = JSON.parse(data);
+    $('#reponseID').append( jsonObject.message );
+  }
+
+$("#addfav").click(function(){
+  var tempName;
+  tempName=localStorage.getItem("name");		
+  var name="&Email="+tempName;
+  //var jsonData={"name":tempName, "Data":addfavcar};
+  var jsonData={"user": name};
+   $.ajax({
+      url: "http://127.0.0.1:2323/addfavcar", 
+      dataType: 'jsonp',
+      type: 'POST',
+      data: JSON.stringify(jsonData),
+      success: function(result){
+      }, error: function (xhr, textStatus, errorThrown) {
+        }
+});
+window.location.reload();
+});
+
+$("#addfav2").click(function(){
+  var tempName;
+  tempName=localStorage.getItem("name");
+  var name="&Email="+tempName;
+  //var jsonData={"name":tempName, "Data":addfavcar};
+  var jsonData={"user": name};
+   $.ajax({
+      url: "http://127.0.0.1:2323/addfavcar2", 
+      dataType: 'jsonp',
+      type: 'POST',
+      data: JSON.stringify(jsonData),
+      success: function(result){
+      }, error: function (xhr, textStatus, errorThrown) {
+        }
+});
+window.location.reload();
+});
+
+$("#addfav3").click(function(){
+  var tempName;
+  tempName=localStorage.getItem("name");
+  var name="&Email="+tempName;
+  //var jsonData={"name":tempName, "Data":addfavcar};
+  var jsonData={"user": name};
+   $.ajax({
+      url: "http://127.0.0.1:2323/addfavcar3", 
+      dataType: 'jsonp',
+      type: 'POST',
+      data: JSON.stringify(jsonData),
+      success: function(result){
+      }, error: function (xhr, textStatus, errorThrown) {
+        }
+});
+window.location.reload();
+});
+
+$("#addfav4").click(function(){
+		var tempName;
+		tempName=localStorage.getItem("name");
+		var name="&Email="+tempName;
+		//var jsonData={"name":tempName, "Data":addfavcar};
+		var jsonData={"user": name};
+		 $.ajax({
+				url: "http://127.0.0.1:2323/addfavcar4", 
+				dataType: 'jsonp',
+				type: 'POST',
+				data: JSON.stringify(jsonData),
+				success: function(result){
+				}, error: function (xhr, textStatus, errorThrown) {
+      		}
+	});
+	window.location.reload();
+});
+
+
+
+$("#savecar").click(function(){
+
+var tempName, tempfavlist;
+tempName=localStorage.getItem("name");
+tempfavlist=localStorage.getItem("favlist");
+  
+var myfavdata="&Email="+tempName+"&favlist="+tempfavlist;
+
+$.ajax({
+type: "POST",
+data:  myfavdata ,
+url: "http://127.0.0.1:2323/VIP",
+success: function (result) {
+  alert(result);
+  if (result == "OK") {
+  alert("The trainer is added!");
+  } else {
+  alert("ERROR! The trainer is not added.");
+  }
+  }, error: function (xhr, textStatus, errorThrown) {
+  alert("Favourite List lost");
+  console.log(textStatus);
+  }
+});
+});
+
+$("#save").click(function(){
+
+var tempName, tempfavlist;
+tempName=localStorage.getItem("name");
+tempfavlist=localStorage.getItem("favlist");
+  
+var myfavdata="&Email="+tempName+"&favlist="+tempfavlist;
+
+$.ajax({
+type: "POST",
+data:  myfavdata ,
+url: "http://127.0.0.1:2323/VIP",
+success: function (result) {
+  alert(result);
+  if (result == "OK") {
+  alert("The trainer is added!");
+  } else {
+  alert("The data wasnt sent to server");
+  }
+  }, error: function (xhr, textStatus, errorThrown) {
+  alert("Favourite List lost");
+  console.log(textStatus);
+  }
+});
+});
+  $("#show").click(function(){
+      var tempName;
+  tempName=localStorage.getItem("name");
+  
+  var name="&Email="+tempName;
+      
+      $.ajax({
+        url: "http://127.0.0.1:2323/readfavourlist",          
+        type: "POST",
+        data: name ,
+        success: function (result) {
+          result = JSON.parse(result);
+          $("#favlist").empty();
+          $.each(result, function(i,fav){
+      var favourite = fav.favlist;
+            favlist2[favitem2] = favourite;
+      favitem+=1;
+      $("#favlist").append('<div class="container"><div class="row"><div class="col-1"></div><font color="Orange"><p>'+ favourite +'</p></font></div></div>');
+    });
+          console.log(result);
+          //alert(result);
+        },
+        error: function(result){
+            console.log(result);
+          }
+      });
+      
+});
+ $("#Delete").click(function(){
+  var tempName,tempdelfav;
+  tempName = localStorage.getItem("name");
+  tempdelfav = $("#favorite_list").val();
+  var delData="&Email="+tempName+"&favlist="+tempdelfav;
+
+      $.ajax({
+         url: "http://127.0.0.1:2323/removefavourlist",          
+         type: "POST",
+         data: delData ,
+         success: function (result) {
+     if (result == "OK"){
+     alert("the trainer is deleted");
+          }
+          else{
+           alert(result);
+           console.log(result);
+     }
+         },
+         error: function(result){
+             console.log(result);
+           }
+       });
+   
+});
+
+$("#update").click(function(){
+
+var tempName, tempfavlist;
+tempName=localStorage.getItem("name");
+tempfavlist=localStorage.getItem("favlist");
+  
+var myfavdata="&Email="+tempName+"&favlist="+ tempfavlist;
+
+$.ajax({
+type: "POST",
+data:  myfavdata ,
+url: "http://127.0.0.1:2323/editfavlist21",
+success: function (result) {
+  alert(result);
+  if (result == "OK") {
+  alert("The trainer is added!");
+  var result = result.about;
+  var aboutid = "about";
+  document.getElementById(about).innerHTML=result;
+  } else {
+  alert("ERROR! The trainer is not added.");
+  }
+  }, error: function (xhr, textStatus, errorThrown) {
+  }
+});
+});
+
+
+  
+
+
+
+$("#addedit1").click(function(){
+ favlist[favitem] = $("#favorite_list1").val();
+ favitem +=1;
+ alert(JSON.stringify(favlist));
+ localStorage.setItem("favlist", JSON.stringify(favlist));
+ });
+ 
+$("#save_edit1").click(function(){
+
+var tempName, tempfavlist;
+tempName=localStorage.getItem("name");
+tempfavlist=localStorage.getItem("favlist");
+  
+var myfavdata="&Email="+tempName+"\"}" + "&favlist="+tempfavlist;
+$.ajax({
+type: "POST",
+data:  myfavdata ,
+url: "http://127.0.0.1:2323/editfavlist",
+success: function (result) {
+  alert(result);
+  if (result == "OK") {
+  alert("The trainer is added");
+  } else {
+  alert("ERROR! The trainer is not added.");
+  }
+  }, error: function (xhr, textStatus, errorThrown) {
+  }
+});
+});
+
+
+$("#addedit2").click(function(){
+ favlist2[favitem2] = $("#favorite_list2").val();
+ favitem2 +=1;
+ alert(JSON.stringify(favlist2));
+ localStorage.setItem("favlist2", JSON.stringify(favlist2));
+ });
+ 
+$("#save_edit2").click(function(){
+
+var tempName, tempfavlist;
+tempName=localStorage.getItem("name");
+tempfavlist=localStorage.getItem("favlist2");
+  
+var myfavdata="&Email="+tempName+"\"}" + "&favlist2="+tempfavlist;
+$.ajax({
+type: "POST",
+data:  myfavdata ,
+url: "http://127.0.0.1:2323/editfavlist2",
+success: function (result) {
+  alert(result);
+  if (result == "OK") {
+  alert("The trainer is added");
+  } else {
+  alert("ERROR! The trainer is not added.");
+  }
+  }, error: function (xhr, textStatus, errorThrown) {
+//	alert("Favourite_List is lose");
+//	console.log(textStatus);
+  }
+});
+});
+
+$("#addedit3").click(function(){
+ favlist3[favitem3] = $("#favorite_list3").val();
+ favitem3 +=1;
+ alert(JSON.stringify(favlist3));
+ localStorage.setItem("favlist3", JSON.stringify(favlist3));
+ });
+ 
+$("#save_edit3").click(function(){
+
+var tempName, tempfavlist;
+tempName=localStorage.getItem("name");
+tempfavlist=localStorage.getItem("favlist3");
+  
+var myfavdata="&Email="+tempName+"\"}" + "&favlist3="+tempfavlist;
+$.ajax({
+type: "POST",
+data:  myfavdata ,
+url: "http://127.0.0.1:2323/editfavlist3",
+success: function (result) {
+  alert(result);
+  if (result == "OK") {
+  alert("The trainer is added");
+  } else {
+  alert("ERROR! The trainer is not added.");
+  }
+  }, error: function (xhr, textStatus, errorThrown) {
+//	alert("Favourite_List is lose");
+//	console.log(textStatus);
+  }
+});
+});
+
+$("#addedit4").click(function(){
+	 favlist4[favitem4] = $("#favorite_list4").val();
+	 favitem4 +=1;
+	 alert(JSON.stringify(favlist4));
+	 localStorage.setItem("favlist4", JSON.stringify(favlist4));
+	 });
+	 
+	$("#save_edit4").click(function(){
+	
+	var tempName, tempfavlist;
+	tempName=localStorage.getItem("name");
+	tempfavlist=localStorage.getItem("favlist4");
+		
+	var myfavdata="&Email="+tempName+"\"}" + "&favlist4="+tempfavlist;
+	$.ajax({
+	type: "POST",
+	data:  myfavdata ,
+	url: "http://127.0.0.1:2323/editfavlist4",
+	success: function (result) {
+		alert(result);
+		if (result == "OK") {
+		alert("The data was sent to server!");
+		} else {
+		alert("The data wasnt sent to server");
+		}
+		}, error: function (xhr, textStatus, errorThrown) {
+	//	alert("Favourite_List is lose");
+	//	console.log(textStatus);
+		}
+	});
+});
+
+
+$("#logout").click(function(){
+    alert("Loading now, please wait.");
+    localStorage.removeItem("name");
+    localStorage.removeItem("favlist");
+    localStorage.clear();
+    window.location.href = "http://127.0.0.1:2323/index";
+    })
+$("#member").click(function(){
+    window.location.href = "http://127.0.0.1:2323/VIP";
+    })
+$("#myfavourlist").click(function(){
+    window.location.href = "http://127.0.0.1:2323/myfavourlist";
+    })
+$("#api").click(function(){
+		window.location.href = "http://127.0.0.1:2323/myapi";
+    })
+
+  });
+
+
+</script>
+
+
+  
+
+    <body>
+    
+ 
+    
+    
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container"> 
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">Training<em> Studio</em></a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li class="scroll-to-section"><a href="#call-to-action" class="active">Home</a></li>
+                            <li class="scroll-to-section"><a href="#trainers">Trainers</a></li>
+                            <li class="scroll-ro-section"><a href="http://127.0.0.1:2323/myfavourlist">My Trainers</a></li>
+                            <li class="scroll-to-section"><a href="#contact-us">Contact</a></li> 
+                            <li class="w3-bar-item w3-button" id="logout"><a href="">Sign Out</a></li>
+                        </ul>        
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+
+    <!-- ***** Call to Action Start ***** -->
+    <section class="section" id="call-to-action">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 offset-lg-1">
+                    <div class="cta-content">
+                        <h2>Don’t <em>think</em>, begin <em>today</em>!</h2>
+                        <p>Ut consectetur, metus sit amet aliquet placerat, enim est ultricies ligula, sit amet dapibus odio augue eget libero. Morbi tempus mauris a nisi luctus imperdiet.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Call to Action End ***** -->
+ 
+    <!-- ***** Testimonials Starts ***** -->
+    <section class="section" id="trainers">
+      <div class="container">
+          <div class="row">
+              <div class="col-lg-6 offset-lg-3">
+                  <div class="section-heading">
+                      <h2>Expert <em>Trainers</em></h2>
+                      <img src="assets/images/line-dec.png" alt="">
+                      <p>Nunc urna sem, laoreet ut metus id, aliquet consequat magna. Sed viverra ipsum dolor, ultricies fermentum massa consequat eu.</p>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col-lg-4">
+                  <div class="trainer-item">
+                      <div class="image-thumb">
+                          <img src="assets/images/trainer1.jpg" alt="">
+                      </div>
+                      <div class="down-content">
+                          <span>Strength Trainer</span>
+                          <h4>Bret D. Bowers</h4>
+                          <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
+                          <div id="block_container">
+                            <div id="bloc1"><button id="addfav" class="btn btn-primary" type="button">Add to My Trainer</button></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4">
+                  <div class="trainer-item">
+                      <div class="image-thumb">
+                          <img src="assets/images/trainer2.jpg" alt="">
+                      </div>
+                      <div class="down-content">
+                          <span>Muscle Trainer</span>
+                          <h4>Hector T. Daigl</h4>
+                          <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
+                          <div id="block_container">
+                            <div id="bloc1"><button id="addfav2" class="btn btn-primary" type="button">Add to My Trainer</button></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="col-lg-4">
+                  <div class="trainer-item">
+                      <div class="image-thumb">
+                          <img src="assets/images/trainer3.jpg" alt="">
+                      </div>
+                      <div class="down-content">
+                          <span>Power Trainer</span>
+                          <h4>Paul D. Newman</h4>
+                          <p>Bitters cliche tattooed 8-bit distillery mustache. Keytar succulents gluten-free vegan church-key pour-over seitan flannel.</p>
+                          <div id="block_container">
+                            <div id="bloc1"><button id="addfav3" class="btn btn-primary" type="button">Add to My Trainer</button></div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!-- ***** Testimonials Ends ***** -->
+    
+    <!-- ***** Contact Us Area Starts ***** -->
+    <section class="section" id="contact-us">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div id="map">
+                      <iframe src="https://maps.google.com/maps?q=Av.+L%C3%BAcio+Costa,+Rio+de+Janeiro+-+RJ,+Brazil&t=&z=13&ie=UTF8&iwloc=&output=embed" width="100%" height="600px" frameborder="0" style="border:0" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-12">
+                    <div class="contact-form">
+                        <form id="contact" action="" method="post">
+                          <div class="row">
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="name" type="text" id="name" placeholder="Your Name*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-6 col-sm-12">
+                              <fieldset>
+                                <input name="email" type="text" id="email" pattern="[^ @]*@[^ @]*" placeholder="Your Email*" required="">
+                              </fieldset>
+                            </div>
+                            <div class="col-md-12 col-sm-12">
+                              <fieldset>
+                                <input name="subject" type="text" id="subject" placeholder="Subject">
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <textarea name="message" rows="6" id="message" placeholder="Message" required=""></textarea>
+                              </fieldset>
+                            </div>
+                            <div class="col-lg-12">
+                              <fieldset>
+                                <button type="submit" id="form-submit" class="main-button">Send Message</button>
+                              </fieldset>
+                            </div>
+                          </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ***** Contact Us Area Ends ***** -->
+    
+    <!-- ***** Footer Start ***** -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; 2021 Training Studio</p>                    
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- jQuery -->
+    <!--  -->
+    <script src="assets/js/jquery-2.1.0.min.js"></script>
+
+    <!-- Bootstrap -->
+    <script src="assets/js/popper.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.bundle.min.js"></script>
+	        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- <script src="assets/js/bootstrap.min.js"></script> -->
+
+    <!-- Plugins -->
+    <script src="assets/js/scrollreveal.min.js"></script>
+    <script src="assets/js/waypoints.min.js"></script>
+    <script src="assets/js/jquery.counterup.min.js"></script>
+    <script src="assets/js/imgfix.min.js"></script> 
+    <script src="assets/js/mixitup.js"></script> 
+    <script src="assets/js/accordions.js"></script>
+    
+    <!-- Global Init -->
+    <script src="assets/js/custom.js"></script>
+		
+		        <!-- Contact form JS-->
+        <script src="assets/mail/jqBootstrapValidation.js"></script>
+        <script src="assets/mail/contact_me.js"></script>
+
+
+
+
+
+      </body>
+</html>
